@@ -28,7 +28,7 @@ public class MainActivity extends WoloxActivity {
         //Toolbar will now take on default Action Bar characteristics
         setSupportActionBar(mToolbar);
         //You can now use and reference the ActionBar
-        getSupportActionBar().setTitle("Liniers");
+        getSupportActionBar().setTitle(R.string.app_name);
     }
 
     @Override

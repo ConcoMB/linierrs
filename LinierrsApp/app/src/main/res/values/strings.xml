@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">LinierrsApp</string>
+    <string name="app_name">Linierrs</string>
     <string name="error">Ups! Error</string>
     <string name="retry">Retry</string>
     <string name="no_results">No results</string>
