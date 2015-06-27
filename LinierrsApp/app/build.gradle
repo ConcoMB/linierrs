@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.0"
 
     defaultConfig {
-        applicationId "ar.com.wolox.woloxlogger"
+        applicationId "ar.com.conco.linierrsapp"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
