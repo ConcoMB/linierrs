@@ -21,7 +21,7 @@ public class LinierrsAudioDao {
         list.add(new LinierrsAudio(R.raw.juguetes, "Juguetes",
                 R.drawable.ic_audio_todo_tipo_de_arte));
         list.add(new LinierrsAudio(R.raw.liniers, "Linierrs", R.drawable.ic_audio_liniers));
-        list.add(new LinierrsAudio(R.raw.literatura, "Literatura", R.drawable.ic_audio_armar));
+        list.add(new LinierrsAudio(R.raw.literatura, "Literatura", R.drawable.ic_audio_art_attack));
         return list;
     }
 }
