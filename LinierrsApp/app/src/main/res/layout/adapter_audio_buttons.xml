@@ -7,19 +7,19 @@
     >
 
     <FrameLayout
-        android:layout_width="75dp"
-        android:layout_height="75dp"
+        android:layout_width="@dimen/button_size"
+        android:layout_height="@dimen/button_size"
         android:animateLayoutChanges="true">
-        <ImageButton
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/adapter_audio_buttons_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             />
-        <ImageButton
+        <de.hdodenhof.circleimageview.CircleImageView
             android:id="@+id/adapter_audio_buttons_share_button"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@drawable/translucent_share_background"
+            android:src="@drawable/translucent_share_background"
             />
     </FrameLayout>
 

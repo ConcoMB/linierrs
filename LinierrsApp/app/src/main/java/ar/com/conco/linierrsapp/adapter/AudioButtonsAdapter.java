@@ -70,7 +70,6 @@ public class AudioButtonsAdapter extends BaseAdapter {
                 (audio.title);
         if(!audio.equals(v.mAudio)) {
             Picasso.with(mContext).load(audio.backgroundId)
-                    .transform(new CircleTransformation())
                     .into(v.mImage);
             v.mAudio = audio;
         }
@@ -105,13 +104,13 @@ public class AudioButtonsAdapter extends BaseAdapter {
     private class ViewHolder {
         ImageView mImage;
         TextView mTitleView;
-        ImageButton mShareButton;
+        ImageView mShareButton;
         LinierrsAudio mAudio;
 
         ViewHolder(View view) {
             mImage = (ImageView) view.findViewById(R.id.adapter_audio_buttons_button);
             mTitleView = (TextView) view.findViewById(R.id.adapter_audio_buttons_title);
-            mShareButton = (ImageButton) view.findViewById(R.id.adapter_audio_buttons_share_button);
+            mShareButton = (ImageView) view.findViewById(R.id.adapter_audio_buttons_share_button);
         }
     }
 
