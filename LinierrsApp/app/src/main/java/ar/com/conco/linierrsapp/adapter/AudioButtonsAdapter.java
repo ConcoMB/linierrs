@@ -7,12 +7,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
 import ar.com.conco.linierrsapp.R;
 import ar.com.conco.linierrsapp.model.LinierrsAudio;
+import ar.com.conco.linierrsapp.transformation.CircleTransformation;
 
 public class AudioButtonsAdapter extends BaseAdapter {
 
@@ -60,10 +64,13 @@ public class AudioButtonsAdapter extends BaseAdapter {
 
     private void populate(LinierrsAudio audio, ViewHolder v) {
         v.mTitleView.setText(audio.title);
+        Picasso.with(mContext).load(audio.backgroundId)
+                .transform(new CircleTransformation())
+                .into(v.mImage);
     }
 
     private void setListeners(final LinierrsAudio audio, ViewHolder v) {
-        v.mImageButton.setOnClickListener(new View.OnClickListener() {
+        v.mImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 MediaPlayer mediaPlayer = MediaPlayer.create(mContext, audio.rawAudioId);
@@ -73,11 +80,11 @@ public class AudioButtonsAdapter extends BaseAdapter {
     }
 
     private class ViewHolder {
-        ImageButton mImageButton;
+        ImageView mImage;
         TextView mTitleView;
 
         ViewHolder(View view) {
-            mImageButton = (ImageButton) view.findViewById(R.id.adapter_audio_buttons_button);
+            mImage = (ImageView) view.findViewById(R.id.adapter_audio_buttons_button);
             mTitleView = (TextView) view.findViewById(R.id.adapter_audio_buttons_title);
         }
     }
