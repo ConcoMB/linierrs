@@ -6,11 +6,22 @@
     android:paddingTop="16dp"
     >
 
-    <ImageView
-        android:id="@+id/adapter_audio_buttons_button"
+    <FrameLayout
         android:layout_width="75dp"
         android:layout_height="75dp"
-        />
+        android:animateLayoutChanges="true">
+        <ImageButton
+            android:id="@+id/adapter_audio_buttons_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            />
+        <ImageButton
+            android:id="@+id/adapter_audio_buttons_share_button"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/translucent_share_background"
+            />
+    </FrameLayout>
 
     <TextView
         android:id="@+id/adapter_audio_buttons_title"

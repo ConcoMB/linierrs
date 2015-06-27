@@ -1,7 +1,9 @@
 package ar.com.conco.linierrsapp.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.media.MediaPlayer;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,6 +24,7 @@ public class AudioButtonsAdapter extends BaseAdapter {
 
     private Context mContext;
     private List<LinierrsAudio> mAudioIdList;
+    private boolean mShareMode;
 
     public AudioButtonsAdapter(Context context, List<LinierrsAudio> audioIdList) {
         this.mContext = context;
@@ -63,10 +66,19 @@ public class AudioButtonsAdapter extends BaseAdapter {
     }
 
     private void populate(LinierrsAudio audio, ViewHolder v) {
-        v.mTitleView.setText(audio.title);
-        Picasso.with(mContext).load(audio.backgroundId)
-                .transform(new CircleTransformation())
-                .into(v.mImage);
+        v.mTitleView.setText
+                (audio.title);
+        if(!audio.equals(v.mAudio)) {
+            Picasso.with(mContext).load(audio.backgroundId)
+                    .transform(new CircleTransformation())
+                    .into(v.mImage);
+            v.mAudio = audio;
+        }
+        if(mShareMode) {
+            v.mShareButton.setVisibility(View.VISIBLE);
+        } else {
+            v.mShareButton.setVisibility(View.GONE);
+        }
     }
 
     private void setListeners(final LinierrsAudio audio, ViewHolder v) {
@@ -77,15 +89,38 @@ public class AudioButtonsAdapter extends BaseAdapter {
                 mediaPlayer.start();
             }
         });
+        v.mShareButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent share = new Intent(Intent.ACTION_SEND);
+                share.setType("audio/*");
+                Uri uri = Uri.parse("android.resource://"+ mContext.getPackageName() + "/" + audio.rawAudioId);
+                share.putExtra(Intent.EXTRA_STREAM, uri);
+                mContext.startActivity(Intent.createChooser(share, "Share Sound File"));
+                setShareMode(false);
+            }
+        });
     }
 
     private class ViewHolder {
         ImageView mImage;
         TextView mTitleView;
+        ImageButton mShareButton;
+        LinierrsAudio mAudio;
 
         ViewHolder(View view) {
             mImage = (ImageView) view.findViewById(R.id.adapter_audio_buttons_button);
             mTitleView = (TextView) view.findViewById(R.id.adapter_audio_buttons_title);
+            mShareButton = (ImageButton) view.findViewById(R.id.adapter_audio_buttons_share_button);
         }
+    }
+
+    public void setShareMode(boolean shareMode) {
+        mShareMode = shareMode;
+        notifyDataSetChanged();
+    }
+
+    public void toggleShareMode() {
+        setShareMode(!mShareMode);
     }
 }

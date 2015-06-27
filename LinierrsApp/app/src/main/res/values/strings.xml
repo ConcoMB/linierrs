@@ -3,4 +3,5 @@
     <string name="error">Ups! Error</string>
     <string name="retry">Retry</string>
     <string name="no_results">No results</string>
+    <string name="action_share">Share</string>
 </resources>
