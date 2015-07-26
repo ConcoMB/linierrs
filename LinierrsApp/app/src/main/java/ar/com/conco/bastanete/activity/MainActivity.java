@@ -6,6 +6,9 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.widget.GridView;
 
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdView;
+
 import ar.com.conco.bastanete.R;
 import ar.com.conco.bastanete.adapter.AudioButtonsAdapter;
 import ar.com.conco.bastanete.dao.LinierrsAudioDao;
@@ -15,6 +18,7 @@ public class MainActivity extends WoloxActivity {
     private GridView mGridView;
     private AudioButtonsAdapter mAudioButtonsAdapter;
     private Toolbar mToolbar;
+    private AdView mAdView;
 
     @Override
     protected int layout() {
@@ -25,6 +29,7 @@ public class MainActivity extends WoloxActivity {
     protected void setUi() {
         mGridView = (GridView) findViewById(R.id.activity_main_grid);
         mToolbar = (Toolbar) findViewById (R.id.toolbar);
+        mAdView = (AdView) findViewById(R.id.ad_view);
         //Toolbar will now take on default Action Bar characteristics
         setSupportActionBar(mToolbar);
         //You can now use and reference the ActionBar
@@ -45,6 +50,8 @@ public class MainActivity extends WoloxActivity {
     protected void init() {
         mAudioButtonsAdapter = new AudioButtonsAdapter(this, LinierrsAudioDao.list());
         mGridView.setAdapter(mAudioButtonsAdapter);
+        AdRequest adRequest = new AdRequest.Builder().build();
+        mAdView.loadAd(adRequest);
     }
 
     @Override
